@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la página</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .title{
+         border: solid 1px;
+         width: 100%;
+    }
+    .container{
+        border: solid 1px red;
+        width: 100%;
+        /* height: 500px; */
+    }
+    .tarjetas{
+        border: 1px solid green;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tarjeta{
+        width: 200px;
+        border: 1px violet solid;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    .btn{
+        border: none;
+        width: 80%;
+        height: 20px;
+        margin: 5px 0;
+    }
+
+    .eliminar{
+        background-color: red;
+        color: white;
+       
+    }
+
+    span{
+        margin: 0 5px;
+    }
+
+</style>
+<body>
+    <div class="title">
+        <h1>TITULO</h1>
+    </div>
+    <div><button id="anadir">ANADIR</button></div>
+    <div class="container">
+        <div class="tarjetas">
+         
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const anadir=document.getElementById('anadir').addEventListener('click',añadir)
+        
+        
+        let patron = /\d/gi
+        let texto = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, ad.'
+        if (patron.test(texto)){
+            console.log('cumple');
+        }else{
+            console.log('no cumple');
+        }
+            
+        let cont=0
+        const tarjetas = document.querySelector('.tarjetas')
+        function añadir(){
+            let tarjeta = document.createElement('div')
+            tarjeta.className='tarjeta'
+            let titleCard=document.createElement('div')
+            titleCard.className='title-card'
+            let titulocard=document.createElement('h3')
+            titulocard.innerText='MODELO '+cont++
+            let textCard=document.createElement('div')
+            textCard.className='text-card'
+            let texto=document.createElement('p')
+            texto.innerText='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, sapiente'
+            let botones=document.createElement('div')
+            botones.className='button-card'
+           
+            let eliminar=document.createElement('button')
+           
+            eliminar.className='btn'
+            eliminar.className+=' eliminar'
+           let span= document.createElement('span')
+           let icon= document.createElement('i')
+           icon.className='bi bi-trash'
+           
+           
+            eliminar.textContent='DELETE'
+
+            span.append(icon)
+            eliminar.append(span)
+            botones.append(eliminar)
+            
+            textCard.append(texto)
+            titleCard.append(titulocard)
+
+            tarjeta.append(titleCard)
+            tarjeta.append(texto)
+            tarjeta.append(botones)
+
+            tarjetas.append(tarjeta)
+
+          eliminar.addEventListener('click',(e)=>{
+            e.stopPropagation()
+            tarjetas.removeChild(tarjeta)
+            })
+            
+            // fetch("https://api.escuelajs.co/api/v1/products")
+            // .then(response=>response.json())
+            // .then(datos=>{
+            //     for(let i = 0;i<10;i++){
+            //         console.log(datos[i].title)
+            //         console.log(datos[i].price)
+            //     }
+            // });
+            // fetch('https://pokeapi.co/api/v2/pokemon/')
+            // .then(response=>response.json())
+            // .then(datos=>console.log(datos))
+
+        
+        }
+        
+        
+        
+        
+
+    </script>
+</body>
+</html>
